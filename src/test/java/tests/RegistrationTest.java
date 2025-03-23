@@ -1,33 +1,35 @@
 package tests;
 
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.MainPage;
-import pages.RegistrationPage;
-import utils.WebDriverFactory;
+import utils.UsersApi;
+
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
-
+@RunWith(Parameterized.class)
 public class RegistrationTest extends BaseTest{
+
 
     public RegistrationTest(String browser) {
         super(browser);
     }
+
+
 
     @Test
     @DisplayName("Проверка успешной регистрации")
     public void testSuccessfulRegistration() {
         mainPage.clickLoginButton();
         registrationPage.clickRegisterLink();
-        registrationPage.enterName("Иван");
-        registrationPage.enterEmail("ivan90991111@example.com");
-        registrationPage.enterPassword("password123");
+
+        registrationPage.enterName(UsersApi.name);
+        registrationPage.enterEmail(UsersApi.email);
+        registrationPage.enterPassword(UsersApi.password);
         registrationPage.clickRegisterButton();
 
         // Проверка успешной регистрации
@@ -36,6 +38,8 @@ public class RegistrationTest extends BaseTest{
 
         String currentUrl = driver.getCurrentUrl();
         assertEquals("Пользователь не был перенаправлен на страницу входа после регистрации","https://stellarburgers.nomoreparties.site/login", currentUrl);
+
+        userApi.deleteUser();
 
     }
 

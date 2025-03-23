@@ -7,13 +7,12 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.*;
-import utils.WebDriverFactory;
-
+import utils.*;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
 
-@RunWith(Parameterized.class)
+
 public class BaseTest extends WebDriverFactory {
 
     public WebDriver driver;
@@ -25,8 +24,12 @@ public class BaseTest extends WebDriverFactory {
     public PasswordRecoveryPage passwordRecoveryPage;
     public ConstructorPage constructorPage;
     public String browser;
+    public UsersApi userApi;
 
-    public BaseTest(String browser) {
+
+
+
+    public BaseTest (String browser) {
         this.browser = browser;
     }
 
@@ -52,6 +55,8 @@ public class BaseTest extends WebDriverFactory {
         loginPage = new LoginPage(driver);
         passwordRecoveryPage = new PasswordRecoveryPage(driver);
         constructorPage = new ConstructorPage(driver);
+        userApi = new UsersApi();
+
     }
 
     @After

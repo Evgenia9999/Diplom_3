@@ -1,22 +1,14 @@
 package tests;
 
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.LoginPage;
-import pages.MainPage;
-import pages.ProfilePage;
-import utils.WebDriverFactory;
-
-import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class NavigationTest extends BaseTest {
 
 

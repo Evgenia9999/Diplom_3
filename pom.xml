@@ -35,6 +35,13 @@
         <version>2.27.0</version>
     </dependency>
 
+    <!-- JSON Path -->
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>json-path</artifactId>
+        <version>5.3.0</version>
+    </dependency>
+
     <!-- WebDriverManager для автоматического управления драйверами -->
     <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 
@@ -65,6 +72,12 @@
         <groupId>io.github.bonigarcia</groupId>
         <artifactId>webdrivermanager</artifactId>
         <version>5.8.0</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.aeonbits.owner</groupId>
+        <artifactId>owner</artifactId>
+        <version>1.0.12</version>
         <scope>test</scope>
     </dependency>
 </dependencies>

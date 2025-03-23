@@ -1,20 +1,14 @@
 package tests;
 
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.*;
-import utils.WebDriverFactory;
-
-import java.time.Duration;
-
+import utils.UsersApi;
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class LoginTest extends BaseTest {
 
 
@@ -28,13 +22,17 @@ public class LoginTest extends BaseTest {
 
         mainPage.clickLoginButton();
 
-        loginPage.enterEmail("ivan@example.com");
-        loginPage.enterPassword("password123");
+        userApi.createUser();
+        loginPage.enterEmail(UsersApi.email);
+        loginPage.enterPassword(UsersApi.password);
+
         loginPage.clickLoginButton();
 
         wait.until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
 
         assertEquals("https://stellarburgers.nomoreparties.site/", driver.getCurrentUrl());
+
+        userApi.deleteUser();
     }
 
     @Test
@@ -42,15 +40,17 @@ public class LoginTest extends BaseTest {
     public void testLoginFromPersonalAccountButton() {
 
         mainPage.clickPersonalAccountButton();
-
-        loginPage.enterEmail("ivan@example.com");
-        loginPage.enterPassword("password123");
+        userApi.createUser();
+        loginPage.enterEmail(UsersApi.email);
+        loginPage.enterPassword(UsersApi.password);
         loginPage.clickLoginButton();
 
         wait.until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
 
         // Проверка успешного входа
         assertEquals("https://stellarburgers.nomoreparties.site/", driver.getCurrentUrl());
+
+        userApi.deleteUser();
     }
 
     @Test
@@ -61,13 +61,17 @@ public class LoginTest extends BaseTest {
         registrationPage.clickRegisterLink();
         registrationPage.clickLoginLink();
 
-        loginPage.enterEmail("ivan@example.com");
-        loginPage.enterPassword("password123");
+        userApi.createUser();
+        loginPage.enterEmail(UsersApi.email);
+        loginPage.enterPassword(UsersApi.password);
+
         loginPage.clickLoginButton();
         wait.until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
 
         // Проверка успешного входа
         assertEquals("https://stellarburgers.nomoreparties.site/", driver.getCurrentUrl());
+
+        userApi.deleteUser();
     }
 
     @Test
@@ -80,13 +84,17 @@ public class LoginTest extends BaseTest {
 
         wait.until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/login"));
 
-        loginPage.enterEmail("ivan@example.com");
-        loginPage.enterPassword("password123");
+        userApi.createUser();
+        loginPage.enterEmail(UsersApi.email);
+        loginPage.enterPassword(UsersApi.password);
+
         loginPage.clickLoginButton();
         wait.until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
 
         // Проверка успешного входа
         assertEquals("https://stellarburgers.nomoreparties.site/", driver.getCurrentUrl());
+
+        userApi.deleteUser();
     }
 
 }
