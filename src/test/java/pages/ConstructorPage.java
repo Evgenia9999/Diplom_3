@@ -13,7 +13,6 @@ public class ConstructorPage {
     private By activeSouceSection = By.xpath("//h2[text()='Соусы']");
     private By activeFillingSection = By.xpath("//h2[text()='Начинки']");
 
-
     public ConstructorPage(WebDriver driver) {
         this.driver = driver;
     }

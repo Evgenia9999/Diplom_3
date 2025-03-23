@@ -14,17 +14,10 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
-public class RegistrationTest {
-    private WebDriver driver;
-    private MainPage mainPage;
-    private RegistrationPage registrationPage;
+public class RegistrationTest extends BaseTest{
 
-    @Before
-    public void setUp() {
-        driver = WebDriverFactory.create("chrome");
-        driver.get("https://stellarburgers.nomoreparties.site/");
-        mainPage = new MainPage(driver);
-        registrationPage = new RegistrationPage(driver);
+    public RegistrationTest(String browser) {
+        super(browser);
     }
 
     @Test
@@ -33,7 +26,7 @@ public class RegistrationTest {
         mainPage.clickLoginButton();
         registrationPage.clickRegisterLink();
         registrationPage.enterName("Иван");
-        registrationPage.enterEmail("ivan909911@example.com");
+        registrationPage.enterEmail("ivan90991111@example.com");
         registrationPage.enterPassword("password123");
         registrationPage.clickRegisterButton();
 
@@ -64,8 +57,4 @@ public class RegistrationTest {
         assertEquals(expectedErrorMessage, actualErrorMessage);
     }
 
-   @After
-    public void tearDown() {
-        driver.quit();
-    }
 }

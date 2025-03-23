@@ -15,25 +15,11 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
-public class LoginTest {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private MainPage mainPage;
-    private LoginPage loginPage;
-    private RegistrationPage registrationPage;
-    private PasswordRecoveryPage passwordRecoveryPage;
+public class LoginTest extends BaseTest {
 
 
-    @Before
-    public void setUp() {
-        driver = WebDriverFactory.create("chrome");
-        driver.get("https://stellarburgers.nomoreparties.site/");
-        mainPage = new MainPage(driver);
-        loginPage = new LoginPage(driver);
-        registrationPage = new RegistrationPage(driver);
-        passwordRecoveryPage = new PasswordRecoveryPage(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
+    public LoginTest(String browser) {
+        super(browser);
     }
 
     @Test
@@ -103,11 +89,4 @@ public class LoginTest {
         assertEquals("https://stellarburgers.nomoreparties.site/", driver.getCurrentUrl());
     }
 
-
-
-
-    /*@After
-    public void tearDown() {
-        driver.quit();
-    }*/
 }

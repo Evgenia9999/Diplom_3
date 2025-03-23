@@ -13,18 +13,11 @@ import utils.WebDriverFactory;
 
 import static org.junit.Assert.assertEquals;
 
-public class ConstructorTest {
-    private WebDriver driver;
-    private ConstructorPage constructorPage;
+public class ConstructorTest extends BaseTest {
 
-    @Before
-    public void setUp() {
-        driver = WebDriverFactory.create("chrome");
-        driver.get("https://stellarburgers.nomoreparties.site/");
-        constructorPage = new ConstructorPage(driver);
+    public ConstructorTest(String browser) {
+        super(browser);
     }
-
-
 
     @Test
     @DisplayName("Проверка перехода к разделу «Соусы»")
@@ -59,8 +52,5 @@ public class ConstructorTest {
         assertEquals("Булки", activeSection);
     }
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+
 }

@@ -17,24 +17,13 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
-public class NavigationTest {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private MainPage mainPage;
-    private ProfilePage profilePage;
-    private LoginPage loginPage;
+public class NavigationTest extends BaseTest {
 
 
-    @Before
-    public void setUp() {
-        driver = WebDriverFactory.create("chrome");
-        driver.get("https://stellarburgers.nomoreparties.site/");
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        mainPage = new MainPage(driver);
-        profilePage = new ProfilePage(driver);
-        loginPage = new LoginPage(driver);
+    public NavigationTest(String browser) {
+        super(browser);
     }
+
 
     @Test
     @DisplayName("Проверка перехода по клику на «Личный кабинет»")
@@ -94,8 +83,5 @@ public class NavigationTest {
         assertEquals("https://stellarburgers.nomoreparties.site/login", driver.getCurrentUrl());
     }
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+
 }
